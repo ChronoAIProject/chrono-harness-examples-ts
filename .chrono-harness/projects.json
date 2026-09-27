@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "status": "active",
+  "owners": [
+    "repository",
+    "bootstrap",
+    "bootstrap-tests",
+    "labels",
+    "labels-tests"
+  ],
+  "projects": [
+    {
+      "id": "labels",
+      "kind": "production",
+      "test_project": "labels-tests",
+      "actions": {
+        "build": {
+          "operation": "typecheck.labels",
+          "tool": "node",
+          "argv": [
+            ".chrono-harness/cache/sdk/typescript/package/lib/tsc.js",
+            "--strict",
+            "--noEmit",
+            "--target",
+            "es2022",
+            "--module",
+            "nodenext",
+            "--allowImportingTsExtensions",
+            "logic/text/label.mts",
+            "assays/labels/check.mts"
+          ]
+        }
+      }
+    },
+    {
+      "id": "labels-tests",
+      "kind": "test",
+      "tests_for": "labels",
+      "actions": {
+        "execute": {
+          "operation": "test.labels",
+          "tool": "node",
+          "argv": [
+            "--experimental-strip-types",
+            "assays/labels/check.mts"
+          ]
+        }
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "id": "bootstrap",
+      "path": ".chrono-harness/bootstrap.py",
+      "test_script": "bootstrap-tests",
+      "actions": {
+        "execute": {
+          "operation": "bootstrap",
+          "tool": "python3",
+          "argv": [
+            ".chrono-harness/bootstrap.py",
+            "."
+          ]
+        },
+        "check": {
+          "operation": "ci.verify",
+          "tool": "chrono-ci",
+          "argv": [
+            "verify",
+            "--host-root",
+            ".",
+            "--config",
+            ".chrono-harness/ci/github.json"
+          ]
+        },
+        "generate": {
+          "operation": "instructions.generate",
+          "tool": "chrono-instructions",
+          "argv": [
+            "generate",
+            "--host-root",
+            "."
+          ]
+        }
+      }
+    },
+    {
+      "id": "bootstrap-tests",
+      "path": ".chrono-harness/bootstrap_test.py",
+      "tests_for": "bootstrap",
+      "actions": {
+        "execute": {
+          "operation": "test.bootstrap",
+          "tool": "python3",
+          "argv": [
+            "-B",
+            ".chrono-harness/bootstrap_test.py"
+          ]
+        }
+      }
+    }
+  ]
+}
