@@ -300,6 +300,7 @@
     "test:labels-tests": {
       "operations": [
         "typecheck.labels",
+        "typecheck.labels-tests",
         "test.labels"
       ],
       "timeout_seconds": 120,
