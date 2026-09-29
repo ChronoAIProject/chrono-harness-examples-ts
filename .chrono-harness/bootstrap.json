@@ -1,5 +1,5 @@
 {
-  "schema": "chrono-example-sdk/v1",
+  "schema": "chrono-example-sdk/v2",
   "downloads": [
     {
       "directory": ".chrono-harness/cache/sdk/node",
@@ -24,7 +24,8 @@
             ]
           ]
         }
-      }
+      },
+      "id": "node"
     },
     {
       "directory": ".chrono-harness/cache/sdk/typescript",
@@ -33,7 +34,8 @@
           "url": "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz",
           "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="
         }
-      }
+      },
+      "id": "typescript"
     }
   ],
   "probes": {
@@ -50,5 +52,42 @@
       ".chrono-harness/cache/sdk/typescript/package/lib/tsc.js",
       "--version"
     ]
+  },
+  "default_profile": "all",
+  "profiles": {
+    "all": {
+      "downloads": [
+        "node",
+        "typescript"
+      ],
+      "probes": [
+        "harness",
+        "node",
+        "typescript"
+      ]
+    },
+    "harness": {
+      "downloads": [],
+      "probes": [
+        "harness"
+      ]
+    },
+    "collection": {
+      "downloads": [],
+      "probes": [
+        "harness"
+      ]
+    },
+    "labels": {
+      "downloads": [
+        "node",
+        "typescript"
+      ],
+      "probes": [
+        "harness",
+        "node",
+        "typescript"
+      ]
+    }
   }
 }
