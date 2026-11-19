@@ -1,41 +1,15 @@
 {
-  "schema": "chrono-example-sdk/v2",
+  "schema": "chrono-example-sdk/v3",
   "downloads": [
     {
       "directory": ".chrono-harness/cache/sdk/node",
-      "variants": {
-        "darwin-arm64": {
-          "url": "https://nodejs.org/dist/v22.16.0/node-v22.16.0-darwin-arm64.tar.gz",
-          "integrity": "sha256-1d7f34ec4c03e12d8b33481e5c4560432d7dc31a0ef3ff5a4d9a8ada7cf6ecc9",
-          "install": [
-            [
-              "node-v22.16.0-darwin-arm64/bin/node",
-              ".chrono-harness/bin/node"
-            ]
-          ]
-        },
-        "linux-x86_64": {
-          "url": "https://nodejs.org/dist/v22.16.0/node-v22.16.0-linux-x64.tar.gz",
-          "integrity": "sha256-fb870226119d47378fa9c92c4535389c72dae14fcc7b47e6fdcc82c43de5a547",
-          "install": [
-            [
-              "node-v22.16.0-linux-x64/bin/node",
-              ".chrono-harness/bin/node"
-            ]
-          ]
-        }
-      },
-      "id": "node"
+      "id": "node",
+      "variants_file": ".chrono-harness/sdk/node.json"
     },
     {
       "directory": ".chrono-harness/cache/sdk/typescript",
-      "variants": {
-        "any": {
-          "url": "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz",
-          "integrity": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="
-        }
-      },
-      "id": "typescript"
+      "id": "typescript",
+      "variants_file": ".chrono-harness/sdk/typescript.json"
     }
   ],
   "probes": {
